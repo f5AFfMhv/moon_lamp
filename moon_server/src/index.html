@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MoonLamp</title>
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript">
+    function fetchStatus($option){
+      let o = $option;
+      let fetchRes = fetch(
+        `http://${MOON_LAMP_HOST}/light/${o}`,
+        {mode: "no-cors"});
+        fetchRes.then(d => {
+            console.log(d.text)
+            location.reload();
+          })
+    }
+  </script>
+</head>
+<body>
+  <div class="header">
+    Moon Lamp Control
+  </div>
+
+  <div class="row">
+    <div class="col-3 col-s-3 menu">
+      <ul>
+        <li onclick="fetchStatus(2)">
+          Orange
+        </li>
+        <li onclick="fetchStatus(1)">
+          Blue
+        </li>
+        <li onclick="fetchStatus(3)">
+          White
+        </li>
+        <li onclick="fetchStatus(4)">
+          Off
+        </li>
+      </ul>
+    </div>
+    <div class="col-6 col-s-9">
+      <div id="moon">
+        <iframe src="http://${MOON_LAMP_HOST}/light/5" title="moonframe"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href='https://www.instructables.com/IoT-Moon-Lamp/' target="_blank">Moon Lamp by Martynas J.</a>
+  </div>
+
+</body>
+</html>

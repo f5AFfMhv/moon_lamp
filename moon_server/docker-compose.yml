@@ -1,0 +1,11 @@
+version: "3"
+services:
+  moon-server:
+    container_name: moon-server
+    build: .
+    ports:
+      - 8110:80
+    environment:
+      - TZ=Europe/Vilnius
+      - MOON_LAMP_HOST=192.168.1.247
+    restart: unless-stopped
